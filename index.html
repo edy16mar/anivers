@@ -10,7 +10,7 @@
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            overflow: hidden; /* Ascunde scrollbar-ul */
+            overflow: auto; /* Permite derularea */
             background-color: #f0f0f0; /* Fundal deschis pentru a îmbunătăți contrastul */
         }
         #photo {
@@ -22,43 +22,41 @@
             object-fit: cover; /* Asigură că imaginea acoperă întregul ecran */
             z-index: -1; /* Imaginea să fie în spatele altor elemente */
         }
+        .content {
+            position: relative; /* Afișează conținutul în fața imaginii */
+            z-index: 1; /* Peste imagine */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundal semi-transparent pentru text */
+            border-radius: 10px; /* Colțuri rotunjite */
+            margin: 20px; /* Margine pentru a evita coliziunile */
+        }
         h1 {
             font-size: 3em; /* Font mai mare pentru titlu */
             color: #e74c3c;
             margin-top: 20px;
             animation: fadeInText 2s ease-in-out infinite alternate;
-            position: relative;
-            z-index: 1; /* Peste imagine */
         }
         h2 {
             font-size: 2em; /* Font mai mare pentru subtitlu */
             color: #34495e;
             margin-top: 20px;
-            position: relative;
-            z-index: 1; /* Peste imagine */
         }
         p {
             font-size: 1.2em; /* Font mai mic pentru paragrafe */
             color: #2c3e50;
             margin-top: 20px;
             padding: 0 10px;
-            position: relative;
-            z-index: 1; /* Peste imagine */
         }
         .question {
             margin-top: 30px;
             font-size: 1.8em; /* Font mai mic pentru întrebări */
             color: #2980b9;
             display: none; /* Ascuns inițial */
-            position: relative;
-            z-index: 1; /* Peste imagine */
         }
         .response {
             font-size: 1.5em; /* Font pentru răspuns */
             color: #e74c3c;
             margin-top: 20px;
-            position: relative;
-            z-index: 1; /* Peste imagine */
         }
         @keyframes fadeInText {
             from {
@@ -89,8 +87,6 @@
             cursor: pointer;
             animation: slideIn 1s forwards;
             margin-right: 10px;
-            position: relative;
-            z-index: 1; /* Peste imagine */
         }
     </style>
 </head>
@@ -98,19 +94,21 @@
 
 <img id="photo" src="685796a9-ebc7-4c49-a233-c2cad86a081d.jpg" alt="Poză cu noi">
 
-<h1>La mulți ani, iubita mea!</h1>
-<h2>1 an și 7 luni de iubire și fericire</h2>
+<div class="content">
+    <h1>La mulți ani, iubita mea!</h1>
+    <h2>1 an și 7 luni de iubire și fericire</h2>
 
-<p>Roxana, te iubesc mai mult decât cuvintele pot exprima. Ești persoana care îmi face viața mai frumoasă în fiecare zi. În fiecare moment petrecut cu tine, mă simt norocos și recunoscător. ❤️</p>
+    <p>Roxana, te iubesc mai mult decât cuvintele pot exprima. Ești persoana care îmi face viața mai frumoasă în fiecare zi. În fiecare moment petrecut cu tine, mă simt norocos și recunoscător. ❤️</p>
 
-<p>Astăzi sărbătorim 1 an și 7 luni de iubire, iar eu sunt mai fericit ca niciodată să fiu alături de tine. Îți mulțumesc pentru fiecare clipă, pentru fiecare zâmbet și pentru toată dragostea ta. Te iubesc enorm și abia aștept să continuăm acest drum împreună! 🌹</p>
+    <p>Astăzi sărbătorim 1 an și 7 luni de iubire, iar eu sunt mai fericit ca niciodată să fiu alături de tine. Îți mulțumesc pentru fiecare clipă, pentru fiecare zâmbet și pentru toată dragostea ta. Te iubesc enorm și abia aștept să continuăm acest drum împreună! 🌹</p>
 
-<!-- Scroll-triggered prompt -->
-<div class="question" id="question">
-    <h2>Vrei să mergem în seara asta la un film? 🎬</h2>
-    <p class="response" id="responseMessage"></p> <!-- Mesajul de răspuns -->
-    <button class="prompt" id="yesButton">Da</button>
-    <button class="prompt" id="noButton">Nu</button>
+    <!-- Scroll-triggered prompt -->
+    <div class="question" id="question">
+        <h2>Vrei să mergem în seara asta la un film? 🎬</h2>
+        <p class="response" id="responseMessage"></p> <!-- Mesajul de răspuns -->
+        <button class="prompt" id="yesButton">Da</button>
+        <button class="prompt" id="noButton">Nu</button>
+    </div>
 </div>
 
 <!-- Script for handling responses -->
