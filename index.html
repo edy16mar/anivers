@@ -12,6 +12,15 @@
             text-align: center;
             overflow: hidden; /* Ascunde scrollbar-ul */
         }
+        #photo {
+            position: fixed; /* Poziție fixă pentru a rămâne pe fundal */
+            top: 0;
+            left: 0;
+            width: 100%; /* Lățimea completă a ferestrei */
+            height: 100%; /* Înălțimea completă a ferestrei */
+            object-fit: cover; /* Asigură că imaginea acoperă întregul ecran */
+            z-index: -1; /* Imaginea să fie în spatele altor elemente */
+        }
         h1 {
             font-size: 3em;
             color: #e74c3c;
@@ -26,15 +35,6 @@
             margin-top: 20px;
             position: relative;
             z-index: 1; /* Peste imagine */
-        }
-        #photo {
-            position: absolute; /* Poziție absolută pentru a acoperi tot ecranul */
-            top: 0;
-            left: 0;
-            width: 100vw; /* Lățimea completă a viewport-ului */
-            height: 100vh; /* Înălțimea completă a viewport-ului */
-            object-fit: cover; /* Asigură că imaginea acoperă tot ecranul */
-            z-index: 0; /* Sub toate celelalte elemente */
         }
         p {
             font-size: 1.5em;
@@ -95,7 +95,7 @@
 </head>
 <body>
 
-<img id="photo" src=685796a9-ebc7-4c49-a233-c2cad86a081d.jpg" alt="Poză cu noi">
+<img id="photo" src="685796a9-ebc7-4c49-a233-c2cad86a081d.jpg" alt="Poză cu noi">
 
 <h1>La mulți ani, iubita mea!</h1>
 <h2>1 an și 7 luni de iubire și fericire</h2>
@@ -115,7 +115,7 @@
 <!-- Script for handling responses -->
 <script>
     let attempts = 0;
-    const maxAttempts = 100;
+    const maxAttempts = 10;
 
     window.onload = function() {
         // Afișează promptul la încărcarea paginii
@@ -143,4 +143,3 @@
 
 </body>
 </html>
-
