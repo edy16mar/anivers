@@ -41,7 +41,7 @@
             margin-top: 30px;
             font-size: 2em;
             color: #2980b9;
-            display: none;
+            display: none; /* Ascuns inițial */
         }
         @keyframes fadeInText {
             from {
@@ -62,7 +62,7 @@
             }
         }
         .prompt {
-            margin-top: 50px;
+            margin-top: 20px;
             background-color: #e74c3c;
             color: white;
             padding: 10px 20px;
@@ -80,7 +80,7 @@
 <h1>La mulți ani, iubita mea!</h1>
 <h2>1 an și 7 luni de iubire și fericire</h2>
 
-<img id="photo" src="https://imgur.com/a/USDiqMt" alt="Poză cu noi">
+<img id="photo" src="your-photo-file.jpg" alt="Poză cu noi">
 
 <p>Roxana, te iubesc mai mult decât cuvintele pot exprima. Ești persoana care îmi face viața mai frumoasă în fiecare zi. În fiecare moment petrecut cu tine, mă simt norocos și recunoscător. ❤️</p>
 
@@ -96,29 +96,27 @@
 <!-- Script for handling responses -->
 <script>
     let attempts = 0;
-    const maxAttempts = 100;
-    
-    window.onscroll = function() {
-        var question = document.getElementById("question");
-        if (window.scrollY > 300) {
-            question.style.display = "block";
-            question.style.animation = "slideIn 1s forwards";
-        }
+    const maxAttempts = 10;
+
+    window.onload = function() {
+        // Afișează promptul la încărcarea paginii
+        document.getElementById("question").style.display = "block";
+        document.getElementById("question").style.animation = "slideIn 1s forwards";
     };
 
     document.getElementById('yesButton').addEventListener('click', function() {
         alert('Super! Abia aștept să mergem! 😊');
-        document.getElementById("question").style.display = "none";
+        document.getElementById("question").style.display = "none"; // Ascunde promptul
     });
 
     document.getElementById('noButton').addEventListener('click', function() {
         attempts++;
         if (attempts < maxAttempts) {
             let message = attempts === 1 ? 'Nici dacă te rog frumos?' : 'Nici acum? Te rog frumos!';
-            document.querySelector('h2').innerText = message;
+            document.querySelector('h2').innerText = message; // Schimbă întrebarea
         } else {
             alert('Nu-i nimic, poate altădată! 😔');
-            document.getElementById("question").style.display = "none";
+            document.getElementById("question").style.display = "none"; // Ascunde promptul
         }
     });
 </script>
