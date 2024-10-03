@@ -10,38 +10,54 @@
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            overflow-x: hidden;
+            overflow: hidden; /* Ascunde scrollbar-ul */
         }
         h1 {
             font-size: 3em;
             color: #e74c3c;
             margin-top: 20px;
             animation: fadeInText 2s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 1; /* Peste imagine */
         }
         h2 {
             font-size: 2em;
             color: #34495e;
             margin-top: 20px;
+            position: relative;
+            z-index: 1; /* Peste imagine */
         }
         #photo {
-            margin-top: 20px;
-            max-width: 400px;
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
+            position: absolute; /* Poziție absolută pentru a acoperi tot ecranul */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Lățimea completă a viewport-ului */
+            height: 100vh; /* Înălțimea completă a viewport-ului */
+            object-fit: cover; /* Asigură că imaginea acoperă tot ecranul */
+            z-index: 0; /* Sub toate celelalte elemente */
         }
         p {
             font-size: 1.5em;
             color: #2c3e50;
             margin-top: 20px;
             padding: 0 10px;
+            position: relative;
+            z-index: 1; /* Peste imagine */
         }
         .question {
             margin-top: 30px;
             font-size: 2em;
             color: #2980b9;
             display: none; /* Ascuns inițial */
+            position: relative;
+            z-index: 1; /* Peste imagine */
+        }
+        .response {
+            font-size: 1.5em;
+            color: #e74c3c;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1; /* Peste imagine */
         }
         @keyframes fadeInText {
             from {
@@ -72,15 +88,17 @@
             cursor: pointer;
             animation: slideIn 1s forwards;
             margin-right: 10px;
+            position: relative;
+            z-index: 1; /* Peste imagine */
         }
     </style>
 </head>
 <body>
 
+<img id="photo" src=685796a9-ebc7-4c49-a233-c2cad86a081d.jpg" alt="Poză cu noi">
+
 <h1>La mulți ani, iubita mea!</h1>
 <h2>1 an și 7 luni de iubire și fericire</h2>
-
-<img id="photo" src="685796a9-ebc7-4c49-a233-c2cad86a081d.jpg" alt="Poză cu noi">
 
 <p>Roxana, te iubesc mai mult decât cuvintele pot exprima. Ești persoana care îmi face viața mai frumoasă în fiecare zi. În fiecare moment petrecut cu tine, mă simt norocos și recunoscător. ❤️</p>
 
@@ -89,6 +107,7 @@
 <!-- Scroll-triggered prompt -->
 <div class="question" id="question">
     <h2>Vrei să mergem în seara asta la un film? 🎬</h2>
+    <p class="response" id="responseMessage"></p> <!-- Mesajul de răspuns -->
     <button class="prompt" id="yesButton">Da</button>
     <button class="prompt" id="noButton">Nu</button>
 </div>
@@ -105,15 +124,16 @@
     };
 
     document.getElementById('yesButton').addEventListener('click', function() {
-        alert('Super! Abia aștept să mergem! 😊');
-        document.getElementById("question").style.display = "none"; // Ascunde promptul
+        document.getElementById("responseMessage").innerText = 'Super! Abia aștept să mergem! 😊';
+        document.getElementById("responseMessage").style.color = "#27ae60"; // Verde pentru confirmare
     });
 
     document.getElementById('noButton').addEventListener('click', function() {
         attempts++;
         if (attempts < maxAttempts) {
             let message = attempts === 1 ? 'Nici dacă te rog frumos?' : 'Nici acum? Te rog frumos!';
-            document.querySelector('h2').innerText = message; // Schimbă întrebarea
+            document.getElementById("responseMessage").innerText = message; // Schimbă mesajul
+            document.getElementById("responseMessage").style.color = "#e74c3c"; // Roșu pentru refuz
         } else {
             alert('Nu-i nimic, poate altădată! 😔');
             document.getElementById("question").style.display = "none"; // Ascunde promptul
@@ -123,3 +143,4 @@
 
 </body>
 </html>
+
