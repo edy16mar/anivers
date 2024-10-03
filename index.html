@@ -11,14 +11,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             overflow: auto; /* Permite derularea */
-            background-color: #f0f0f0; /* Fundal deschis pentru a îmbunătăți contrastul */
+            background-color: #f0f0f0; /* Fundal deschis */
         }
         #photo {
-            position: fixed; /* Poziție fixă pentru a rămâne pe fundal */
+            position: absolute; /* Poziție absolută pentru a ocupa întregul ecran */
             top: 0;
             left: 0;
-            width: 100vw; /* Lățimea completă a viewport-ului */
-            height: 100vh; /* Înălțimea completă a viewport-ului */
+            width: 100%; /* Lățimea completă a viewport-ului */
+            height: 100%; /* Înălțimea completă a viewport-ului */
             object-fit: cover; /* Asigură că imaginea acoperă întregul ecran */
             z-index: -1; /* Imaginea să fie în spatele altor elemente */
         }
@@ -26,67 +26,44 @@
             position: relative; /* Afișează conținutul în fața imaginii */
             z-index: 1; /* Peste imagine */
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Fundal semi-transparent pentru text */
+            background-color: rgba(255, 255, 255, 0.8); /* Fundal semi-transparent */
             border-radius: 10px; /* Colțuri rotunjite */
             margin: 20px; /* Margine pentru a evita coliziunile */
         }
+        h1, h2, p {
+            margin: 0 0 10px; /* Margine între elemente */
+        }
         h1 {
-            font-size: 3em; /* Font mai mare pentru titlu */
+            font-size: 2em; /* Font mai mic pentru titlu */
             color: #e74c3c;
-            margin-top: 20px;
-            animation: fadeInText 2s ease-in-out infinite alternate;
         }
         h2 {
-            font-size: 2em; /* Font mai mare pentru subtitlu */
+            font-size: 1.5em; /* Font mai mic pentru subtitlu */
             color: #34495e;
-            margin-top: 20px;
         }
         p {
-            font-size: 1.2em; /* Font mai mic pentru paragrafe */
+            font-size: 1em; /* Font standard pentru paragrafe */
             color: #2c3e50;
-            margin-top: 20px;
-            padding: 0 10px;
         }
         .question {
-            margin-top: 30px;
-            font-size: 1.8em; /* Font mai mic pentru întrebări */
+            margin-top: 20px;
+            font-size: 1.5em; /* Font pentru întrebare */
             color: #2980b9;
             display: none; /* Ascuns inițial */
         }
         .response {
-            font-size: 1.5em; /* Font pentru răspuns */
+            font-size: 1.2em; /* Font pentru răspuns */
             color: #e74c3c;
-            margin-top: 20px;
-        }
-        @keyframes fadeInText {
-            from {
-                opacity: 0.5;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            margin-top: 10px;
         }
         .prompt {
-            margin-top: 20px;
+            margin-top: 10px;
             background-color: #e74c3c;
             color: white;
             padding: 10px 20px;
-            font-size: 1.2em; /* Font mai mic pentru butoane */
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            animation: slideIn 1s forwards;
-            margin-right: 10px;
         }
     </style>
 </head>
@@ -100,7 +77,7 @@
 
     <p>Roxana, te iubesc mai mult decât cuvintele pot exprima. Ești persoana care îmi face viața mai frumoasă în fiecare zi. În fiecare moment petrecut cu tine, mă simt norocos și recunoscător. ❤️</p>
 
-    <p>Astăzi sărbătorim 1 an și 7 luni de iubire, iar eu sunt mai fericit ca niciodată să fiu alături de tine. Îți mulțumesc pentru fiecare clipă, pentru fiecare zâmbet și pentru toată dragostea ta. Te iubesc enorm și abia aștept să continuăm acest drum împreună! 🌹</p>
+    <p>Astăzi sărbătorim 1 an și 7 luni de iubire, iar eu sunt mai fericit ca niciodată să fiu alături de tine. Îți mulțumesc pentru fiecare clipă, pentru fiecare zâmbet și pentru toată dragostea ta. Te iubesc enorm! 🌹</p>
 
     <!-- Scroll-triggered prompt -->
     <div class="question" id="question">
@@ -119,7 +96,6 @@
     window.onload = function() {
         // Afișează promptul la încărcarea paginii
         document.getElementById("question").style.display = "block";
-        document.getElementById("question").style.animation = "slideIn 1s forwards";
     };
 
     document.getElementById('yesButton').addEventListener('click', function() {
